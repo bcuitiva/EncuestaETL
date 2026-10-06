@@ -1,0 +1,1676 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/1/2026 10:08:13 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MSI"
+  DTS:CreatorName="MSI\Bramero"
+  DTS:DTSID="{3027F2B4-BB1A-46A2-9E8E-42BAA22A5A93}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="Paquete0_Cursor"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{EE2CEEB5-1051-4C01-A258-50709B86D813}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C146F093-E695-45E9-A8AF-FB03600AC264}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\BRYAN MENDEZ\Downloads\PersonasETLActividad4.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2259D417-AA60-4E1D-B03F-DA8ECE9486A9}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\BRYAN MENDEZ\Downloads\PersonasETLActividad4.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost\SQL2025.EncuestaETL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{92F9D8AE-91C4-4379-978C-7133355FB831}"
+      DTS:ObjectName="localhost\SQL2025.EncuestaETL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost\SQL2025;Initial Catalog=EncuestaETL;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Paquete0_Cursor-{92F9D8AE-91C4-4379-978C-7133355FB831}localhost\SQL2025.EncuestaETL;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cargar Excel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarea Flujo de datos"
+      DTS:DTSID="{DF9B94FD-3DB5-42C7-AF55-4EB8679625A6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cargar Excel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Cargar Excel\Destino de OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino de OLE DB"
+              name="Destino de OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[stg_Personas]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores proporcionados para columnas de identidad se van a copiar al destino. Si es False, los valores de las columnas de identidad se generan automáticamente en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si las columnas que contienen NULL tendrán NULL insertado en el destino. Si es False, las columnas que contienen NULL tendrán sus valores predeterminados insertados en el destino. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica opciones para usar con la carga rápida. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica cuándo se emiten confirmaciones durante la inserción de datos. El valor 0 especifica que se emitirá una confirmación al final de la inserción de datos. Solo se aplica si está activada la carga rápida."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Excel\Destino de OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost\SQL2025.EncuestaETL]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost\SQL2025.EncuestaETL]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+                  errorOrTruncationOperation="Insertar"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SourceRowId]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SourceRowId"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SourceRowId]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceRowId]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DocumentType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DocumentType"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DocumentType]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentType]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DocumentNumber]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DocumentNumber"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DocumentNumber]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentNumber]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FirstName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MiddleName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MiddleName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MiddleName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MiddleName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[LastName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SecondLastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SecondLastName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SecondLastName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SecondLastName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[BirthDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="BirthDate"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BirthDate]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[BirthDate]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ReportedAge]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ReportedAge"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ReportedAge]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ReportedAge]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Sex]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sex"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sex]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Sex]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MaritalStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MaritalStatus"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MaritalStatus]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MaritalStatus]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Email]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Email]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Phone]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DepartmentCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DepartmentCode"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DepartmentCode]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentCode]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[DepartmentName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DepartmentName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DepartmentName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MunicipalityCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MunicipalityCode"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MunicipalityCode]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityCode]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MunicipalityName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MunicipalityName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MunicipalityName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Zone]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Zone"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Zone]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Zone]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Address]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[HousingType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HousingType"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HousingType]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HousingType]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SocioeconomicStratum]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SocioeconomicStratum"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SocioeconomicStratum]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SocioeconomicStratum]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[EducationLevel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EducationLevel"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EducationLevel]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EducationLevel]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[EmploymentStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmploymentStatus"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmploymentStatus]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStatus]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[OccupationCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OccupationCode"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[OccupationCode]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationCode]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[OccupationName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OccupationName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[OccupationName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[EmployerName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmployerName"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmployerName]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmployerName]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[ContractType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ContractType"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ContractType]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ContractType]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[EmploymentStartDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EmploymentStartDate"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmploymentStartDate]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStartDate]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MonthlyIncome]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MonthlyIncome"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MonthlyIncome]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyIncome]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[MonthlyExpenses]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MonthlyExpenses"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MonthlyExpenses]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyExpenses]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Dependents]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Dependents"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dependents]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Dependents]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[HouseholdSize]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HouseholdSize"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HouseholdSize]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HouseholdSize]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[HealthRegime]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="HealthRegime"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HealthRegime]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HealthRegime]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[Disability]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Disability"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Disability]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Disability]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SurveyDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SurveyDate"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SurveyDate]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SurveyDate]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[UpdatedAt]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="UpdatedAt"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[UpdatedAt]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[UpdatedAt]" />
+                    <inputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].Columns[SourceChannel]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SourceChannel"
+                      externalMetadataColumnId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SourceChannel]"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceChannel]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SourceRowId]"
+                      dataType="wstr"
+                      length="255"
+                      name="SourceRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DocumentType]"
+                      dataType="wstr"
+                      length="255"
+                      name="DocumentType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DocumentNumber]"
+                      dataType="wstr"
+                      length="255"
+                      name="DocumentNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="255"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SecondLastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="SecondLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[BirthDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ReportedAge]"
+                      dataType="wstr"
+                      length="255"
+                      name="ReportedAge" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Sex]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MaritalStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DepartmentCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="DepartmentCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[DepartmentName]"
+                      dataType="wstr"
+                      length="255"
+                      name="DepartmentName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MunicipalityCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="MunicipalityCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MunicipalityName]"
+                      dataType="wstr"
+                      length="255"
+                      name="MunicipalityName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Zone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Zone" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HousingType]"
+                      dataType="wstr"
+                      length="255"
+                      name="HousingType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SocioeconomicStratum]"
+                      dataType="wstr"
+                      length="255"
+                      name="SocioeconomicStratum" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EducationLevel]"
+                      dataType="wstr"
+                      length="255"
+                      name="EducationLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmploymentStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmploymentStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[OccupationCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="OccupationCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[OccupationName]"
+                      dataType="wstr"
+                      length="255"
+                      name="OccupationName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmployerName]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployerName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[ContractType]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[EmploymentStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmploymentStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MonthlyIncome]"
+                      dataType="wstr"
+                      length="255"
+                      name="MonthlyIncome" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[MonthlyExpenses]"
+                      dataType="wstr"
+                      length="255"
+                      name="MonthlyExpenses" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Dependents]"
+                      dataType="wstr"
+                      length="255"
+                      name="Dependents" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HouseholdSize]"
+                      dataType="wstr"
+                      length="255"
+                      name="HouseholdSize" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[HealthRegime]"
+                      dataType="wstr"
+                      length="255"
+                      name="HealthRegime" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[Disability]"
+                      dataType="wstr"
+                      length="255"
+                      name="Disability" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SurveyDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="SurveyDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[UpdatedAt]"
+                      dataType="wstr"
+                      length="255"
+                      name="UpdatedAt" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB].ExternalColumns[SourceChannel]"
+                      dataType="wstr"
+                      length="255"
+                      name="SourceChannel" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Cargar Excel\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de OLE DB"
+                  synchronousInputId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Excel\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Excel\Destino de OLE DB.Outputs[Salida de error de destino de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Cargar Excel\Origen de Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origen de Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Origen de Excel"
+              name="Origen de Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">Personas$</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="La asignación de parámetros del comando SQL a variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Cargar Excel\Origen de Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel]"
+                  name="Salida de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceRowId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SourceRowId]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceRowId]"
+                      name="SourceRowId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DocumentType]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentType]"
+                      name="DocumentType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DocumentNumber]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DocumentNumber]"
+                      name="DocumentNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[FirstName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MiddleName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MiddleName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MiddleName]"
+                      name="MiddleName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[LastName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SecondLastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SecondLastName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SecondLastName]"
+                      name="SecondLastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[BirthDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[BirthDate]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[BirthDate]"
+                      name="BirthDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ReportedAge]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ReportedAge]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ReportedAge]"
+                      name="ReportedAge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Sex]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Sex]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Sex]"
+                      name="Sex"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MaritalStatus]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MaritalStatus]"
+                      name="MaritalStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Email]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Phone]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DepartmentCode]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentCode]"
+                      name="DepartmentCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DepartmentName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[DepartmentName]"
+                      name="DepartmentName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MunicipalityCode]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityCode]"
+                      name="MunicipalityCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MunicipalityName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MunicipalityName]"
+                      name="MunicipalityName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Zone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Zone]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Zone]"
+                      name="Zone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Address]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HousingType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HousingType]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HousingType]"
+                      name="HousingType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SocioeconomicStratum]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SocioeconomicStratum]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SocioeconomicStratum]"
+                      name="SocioeconomicStratum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EducationLevel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EducationLevel]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EducationLevel]"
+                      name="EducationLevel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmploymentStatus]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStatus]"
+                      name="EmploymentStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[OccupationCode]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationCode]"
+                      name="OccupationCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[OccupationName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[OccupationName]"
+                      name="OccupationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmployerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmployerName]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmployerName]"
+                      name="EmployerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ContractType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ContractType]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[ContractType]"
+                      name="ContractType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStartDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmploymentStartDate]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[EmploymentStartDate]"
+                      name="EmploymentStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyIncome]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MonthlyIncome]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyIncome]"
+                      name="MonthlyIncome"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyExpenses]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MonthlyExpenses]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[MonthlyExpenses]"
+                      name="MonthlyExpenses"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Dependents]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Dependents]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Dependents]"
+                      name="Dependents"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HouseholdSize]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HouseholdSize]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HouseholdSize]"
+                      name="HouseholdSize"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HealthRegime]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HealthRegime]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[HealthRegime]"
+                      name="HealthRegime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Disability]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Disability]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[Disability]"
+                      name="Disability"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SurveyDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SurveyDate]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SurveyDate]"
+                      name="SurveyDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[UpdatedAt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[UpdatedAt]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[UpdatedAt]"
+                      name="UpdatedAt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceChannel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SourceChannel]"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].Columns[SourceChannel]"
+                      name="SourceChannel"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SourceRowId]"
+                      dataType="wstr"
+                      length="255"
+                      name="SourceRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DocumentType]"
+                      dataType="wstr"
+                      length="255"
+                      name="DocumentType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DocumentNumber]"
+                      dataType="wstr"
+                      length="255"
+                      name="DocumentNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="255"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SecondLastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="SecondLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[BirthDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="BirthDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ReportedAge]"
+                      dataType="wstr"
+                      length="255"
+                      name="ReportedAge" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Sex]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MaritalStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DepartmentCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="DepartmentCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[DepartmentName]"
+                      dataType="wstr"
+                      length="255"
+                      name="DepartmentName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MunicipalityCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="MunicipalityCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MunicipalityName]"
+                      dataType="wstr"
+                      length="255"
+                      name="MunicipalityName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Zone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Zone" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HousingType]"
+                      dataType="wstr"
+                      length="255"
+                      name="HousingType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SocioeconomicStratum]"
+                      dataType="wstr"
+                      length="255"
+                      name="SocioeconomicStratum" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EducationLevel]"
+                      dataType="wstr"
+                      length="255"
+                      name="EducationLevel" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmploymentStatus]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmploymentStatus" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[OccupationCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="OccupationCode" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[OccupationName]"
+                      dataType="wstr"
+                      length="255"
+                      name="OccupationName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmployerName]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmployerName" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[ContractType]"
+                      dataType="wstr"
+                      length="255"
+                      name="ContractType" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[EmploymentStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmploymentStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MonthlyIncome]"
+                      dataType="wstr"
+                      length="255"
+                      name="MonthlyIncome" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[MonthlyExpenses]"
+                      dataType="wstr"
+                      length="255"
+                      name="MonthlyExpenses" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Dependents]"
+                      dataType="wstr"
+                      length="255"
+                      name="Dependents" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HouseholdSize]"
+                      dataType="wstr"
+                      length="255"
+                      name="HouseholdSize" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[HealthRegime]"
+                      dataType="wstr"
+                      length="255"
+                      name="HealthRegime" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[Disability]"
+                      dataType="wstr"
+                      length="255"
+                      name="Disability" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SurveyDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="SurveyDate" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[UpdatedAt]"
+                      dataType="wstr"
+                      length="255"
+                      name="UpdatedAt" />
+                    <externalMetadataColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel].ExternalColumns[SourceChannel]"
+                      dataType="wstr"
+                      length="255"
+                      name="SourceChannel" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SourceRowId]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SourceRowId]"
+                      name="SourceRowId" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DocumentType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DocumentType]"
+                      name="DocumentType" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DocumentNumber]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DocumentNumber]"
+                      name="DocumentNumber" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[FirstName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MiddleName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SecondLastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SecondLastName]"
+                      name="SecondLastName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[BirthDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[BirthDate]"
+                      name="BirthDate" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ReportedAge]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ReportedAge]"
+                      name="ReportedAge" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Sex]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Sex]"
+                      name="Sex" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MaritalStatus]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MaritalStatus]"
+                      name="MaritalStatus" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DepartmentCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DepartmentCode]"
+                      name="DepartmentCode" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DepartmentName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[DepartmentName]"
+                      name="DepartmentName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MunicipalityCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MunicipalityCode]"
+                      name="MunicipalityCode" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MunicipalityName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MunicipalityName]"
+                      name="MunicipalityName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Zone]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Zone]"
+                      name="Zone" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HousingType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HousingType]"
+                      name="HousingType" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SocioeconomicStratum]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SocioeconomicStratum]"
+                      name="SocioeconomicStratum" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EducationLevel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EducationLevel]"
+                      name="EducationLevel" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmploymentStatus]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmploymentStatus]"
+                      name="EmploymentStatus" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[OccupationCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[OccupationCode]"
+                      name="OccupationCode" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[OccupationName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[OccupationName]"
+                      name="OccupationName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmployerName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmployerName]"
+                      name="EmployerName" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ContractType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ContractType]"
+                      name="ContractType" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmploymentStartDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[EmploymentStartDate]"
+                      name="EmploymentStartDate" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MonthlyIncome]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MonthlyIncome]"
+                      name="MonthlyIncome" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MonthlyExpenses]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[MonthlyExpenses]"
+                      name="MonthlyExpenses" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Dependents]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Dependents]"
+                      name="Dependents" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HouseholdSize]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HouseholdSize]"
+                      name="HouseholdSize" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HealthRegime]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[HealthRegime]"
+                      name="HealthRegime" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Disability]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[Disability]"
+                      name="Disability" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SurveyDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SurveyDate]"
+                      name="SurveyDate" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[UpdatedAt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[UpdatedAt]"
+                      name="UpdatedAt" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SourceChannel]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[SourceChannel]"
+                      name="SourceChannel" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de error de origen de Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Cargar Excel.Paths[Salida de origen de Excel]"
+              endId="Package\Cargar Excel\Destino de OLE DB.Inputs[Entrada de destino de OLE DB]"
+              name="Salida de origen de Excel"
+              startId="Package\Cargar Excel\Origen de Excel.Outputs[Salida de origen de Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Cursor"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0044B87B-18A6-4FBA-825E-CE156C423B1B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cursor"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92F9D8AE-91C4-4379-978C-7133355FB831}"
+          SQLTask:SqlStatementSource="USE EncuestaETL;&#xA;&#xA;SET NOCOUNT ON;&#xA;&#xA;TRUNCATE TABLE dbo.cur_Aceptados;   -- re-ejecutable sin duplicar&#xA;TRUNCATE TABLE dbo.cur_Rechazados;&#xA;&#xA;-- Variables que reciben cada fila&#xA;DECLARE @Id INT,&#xA;        @TipoDoc NVARCHAR(255),  @NumDoc NVARCHAR(255),&#xA;        @Nombre1 NVARCHAR(255),  @Nombre2 NVARCHAR(255),&#xA;        @Apell1  NVARCHAR(255),  @Apell2  NVARCHAR(255),&#xA;        @IngTxt  NVARCHAR(255),  @GasTxt  NVARCHAR(255);&#xA;&#xA;DECLARE @Ing DECIMAL(18,2), @Gas DECIMAL(18,2), @Motivo NVARCHAR(500);&#xA;DECLARE @Procesados INT = 0, @Aceptados INT = 0, @Rechazados INT = 0;&#xA;&#xA;-- (1) DECLARACIÓN&#xA;DECLARE cur_Limpieza CURSOR LOCAL FAST_FORWARD FOR&#xA;    SELECT CAST(SourceRowId AS INT), DocumentType, DocumentNumber,&#xA;           FirstName, MiddleName, LastName, SecondLastName,&#xA;           MonthlyIncome, MonthlyExpenses&#xA;    FROM dbo.stg_Personas&#xA;    WHERE TRY_CAST(SourceRowId AS INT) BETWEEN 1 AND 100&#xA;    ORDER BY TRY_CAST(SourceRowId AS INT);&#xA;&#xA;-- (2) APERTURA&#xA;OPEN cur_Limpieza;&#xA;&#xA;-- (3) LECTURA de la primera fila&#xA;FETCH NEXT FROM cur_Limpieza&#xA;    INTO @Id, @TipoDoc, @NumDoc, @Nombre1, @Nombre2, @Apell1, @Apell2, @IngTxt, @GasTxt;&#xA;&#xA;-- (4) RECORRIDO: mientras la última lectura haya traído una fila&#xA;WHILE @@FETCH_STATUS = 0&#xA;BEGIN&#xA;    SET @Procesados += 1;&#xA;    SET @Motivo = '';&#xA;&#xA;    -- a) Limpieza y estandarización de texto&#xA;    SET @TipoDoc = REPLACE(dbo.fn_LimpiarTexto(@TipoDoc), '.', '');  -- 'cc' -&gt; 'CC'&#xA;    SET @NumDoc  = REPLACE(dbo.fn_LimpiarTexto(@NumDoc), ' ', '');&#xA;    SET @Nombre1 = dbo.fn_LimpiarTexto(@Nombre1);                    -- 'andrés' -&gt; 'ANDRÉS'&#xA;    SET @Nombre2 = dbo.fn_LimpiarTexto(@Nombre2);&#xA;    SET @Apell1  = dbo.fn_LimpiarTexto(@Apell1);&#xA;    SET @Apell2  = dbo.fn_LimpiarTexto(@Apell2);&#xA;&#xA;    -- 'SIN-DATO' es un marcador de ausencia, no un documento&#xA;    IF @NumDoc IN ('SIN-DATO', 'SINDATO', 'N/A', 'NA') SET @NumDoc = NULL;&#xA;&#xA;    -- b) Campos obligatorios&#xA;    IF @NumDoc  IS NULL SET @Motivo += 'Sin número de documento; ';&#xA;    ELSE IF @NumDoc NOT LIKE 'SIM[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'&#xA;                        SET @Motivo += 'Documento con formato inválido; ';&#xA;    IF @TipoDoc IS NULL SET @Motivo += 'Sin tipo de documento; ';&#xA;    IF @Nombre1 IS NULL SET @Motivo += 'Sin primer nombre; ';&#xA;    IF @Apell1  IS NULL SET @Motivo += 'Sin primer apellido; ';&#xA;&#xA;    -- c) Ingreso: faltante / no numérico / negativo&#xA;    SET @Ing = dbo.fn_ParseMonto(@IngTxt);&#xA;    IF NULLIF(LTRIM(RTRIM(@IngTxt)), '') IS NULL&#xA;        SET @Motivo += 'Ingreso faltante; ';&#xA;    ELSE IF @Ing IS NULL&#xA;        SET @Motivo += 'Ingreso no numérico (' + @IngTxt + '); ';&#xA;    ELSE IF @Ing &lt; 0&#xA;        SET @Motivo += 'Ingreso negativo; ';&#xA;&#xA;    -- d) Gasto: misma lógica&#xA;    SET @Gas = dbo.fn_ParseMonto(@GasTxt);&#xA;    IF NULLIF(LTRIM(RTRIM(@GasTxt)), '') IS NULL&#xA;        SET @Motivo += 'Gasto faltante; ';&#xA;    ELSE IF @Gas IS NULL&#xA;        SET @Motivo += 'Gasto no numérico (' + @GasTxt + '); ';&#xA;    ELSE IF @Gas &lt; 0&#xA;        SET @Motivo += 'Gasto negativo; ';&#xA;&#xA;    -- e) Decisión&#xA;    IF @Motivo = ''&#xA;    BEGIN&#xA;        INSERT INTO dbo.cur_Aceptados&#xA;            (SourceRowId, TipoDocumento, NumeroDocumento, PrimerNombre, SegundoNombre,&#xA;             PrimerApellido, SegundoApellido, IngresoMensual, GastoMensual, BalanceMensual)&#xA;        VALUES&#xA;            (@Id, @TipoDoc, @NumDoc, @Nombre1, @Nombre2,&#xA;             @Apell1, @Apell2, @Ing, @Gas, @Ing - @Gas);   -- balance negativo = válido&#xA;        SET @Aceptados += 1;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        INSERT INTO dbo.cur_Rechazados (SourceRowId, Motivo)&#xA;        VALUES (@Id, LEFT(@Motivo, LEN(@Motivo) - 1));     -- quita el último ';'&#xA;        SET @Rechazados += 1;&#xA;    END&#xA;&#xA;    -- (3) LECTURA de la siguiente fila (sin esto el WHILE no termina)&#xA;    FETCH NEXT FROM cur_Limpieza&#xA;        INTO @Id, @TipoDoc, @NumDoc, @Nombre1, @Nombre2, @Apell1, @Apell2, @IngTxt, @GasTxt;&#xA;END&#xA;&#xA;-- (5) CIERRE&#xA;CLOSE cur_Limpieza;&#xA;-- (6) LIBERACIÓN&#xA;DEALLOCATE cur_Limpieza;&#xA;&#xA;-- Presentar la cantidad de registros procesados, aceptados y rechazados&#xA;SELECT @Procesados AS Procesados, @Aceptados AS Aceptados, @Rechazados AS Rechazados;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\VaciarStaging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C6D017A1-D113-42C8-B68A-4123AFEB893E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VaciarStaging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{92F9D8AE-91C4-4379-978C-7133355FB831}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.stg_Personas;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{EAE99B58-05FB-4E61-B0C9-D233A830A7D8}"
+      DTS:From="Package\VaciarStaging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Cargar Excel" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C2673AEC-9910-472B-9E52-9B4C2BAB4406}"
+      DTS:From="Package\Cargar Excel"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Cursor" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\VaciarStaging"
+          TopLeft="73.6538421295773,47.066666339371" />
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Cargar Excel"
+          TopLeft="326.987161621388,50.8666663129462" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="216.853842129577,69.7666663261586">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110.133319491811,0"
+              Start="0,0"
+              End="102.633319491811,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="102.633319491811,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="129.6,48"
+          Id="Package\Cursor"
+          TopLeft="337.371776438613,136.866665714913" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="399.179469030001,92.4666663129462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.3999994019667"
+              Start="0,0"
+              End="0,36.8999994019667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.8999994019667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Cargar Excel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Cargar Excel\Origen de Excel"
+          TopLeft="12.1153839534291,18.7999998692671" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\Cargar Excel\Destino de OLE DB"
+          TopLeft="203.846142708491,14.9999998956919" />
+        <EdgeLayout
+          Id="Package\Cargar Excel.Paths[Salida de origen de Excel]"
+          TopLeft="164.115383953429,37.6999998824795">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.7307587550623,0"
+              Start="0,0"
+              End="32.2307587550623,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.2307587550623,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Excel\Origen de Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Cargar Excel\Destino de OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
